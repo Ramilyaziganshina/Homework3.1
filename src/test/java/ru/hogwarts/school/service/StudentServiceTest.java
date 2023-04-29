@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.StudentRepository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -37,7 +40,14 @@ class StudentServiceTest {
 
     @Test
     void findStudent_success() {
+        long id = 1;
+        Student harry = new Student(1, "Harry Potter", 11);
 
+        when(studentRepository.findById(id)).thenReturn(Optional.of(harry));
+
+        Student actualResult = studentService.findStudent(id);
+
+        assertEquals(harry, actualResult);
     }
 
     @Test

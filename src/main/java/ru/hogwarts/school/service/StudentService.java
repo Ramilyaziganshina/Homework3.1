@@ -40,4 +40,8 @@ public class StudentService {
     public Collection<Student> getAll() {
         return studentRepository.findAll();
     }
+
+    public Collection<Student> findByAgeBetween(long age, long age2) {
+        return studentRepository.findByAgeBetween(age, age2);
+    }
 }

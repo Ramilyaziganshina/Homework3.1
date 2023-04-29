@@ -12,6 +12,7 @@ import ru.hogwarts.school.repositories.FacultyRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -41,9 +42,8 @@ class FacultyServiceTest {
     void findFaculty_success() {
         long id = 1;
         Faculty griffindor = new Faculty(1, "Griffindor", "red");
-        Faculty slyzerin = new Faculty(2, "Slyzerin", "green");
 
-        when(facultyRepository.findById(id).get()).thenReturn(griffindor);
+        when(facultyRepository.findById(id)).thenReturn(Optional.of(griffindor));
 
         Faculty actualResult = facultyService.findFaculty(id);
 
