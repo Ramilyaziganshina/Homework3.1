@@ -47,14 +47,6 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Student>> findStudents(@RequestParam(required = false) Integer age) {
-        if (age != null && age > 0) {
-            return ResponseEntity.ok(studentService.findByAge(age));
-        }
-        return ResponseEntity.ok(studentService.getAll());
-    }
-
-    @GetMapping
     public ResponseEntity<Collection<Student>> findStudentsByAgeBetween(
             @RequestParam(required = false) Integer age,
             @RequestParam(required = false) Integer age2) {
@@ -62,5 +54,11 @@ public class StudentController {
             return ResponseEntity.ok(studentService.findByAgeBetween(age, age2));
         }
         return ResponseEntity.ok(studentService.getAll());
+    }
+
+    @GetMapping
+    public ResponseEntity<Collection<Student>> findStudentsByFacultyId(
+            @RequestParam long faculty_id) {
+        return ResponseEntity.ok(studentService.findAllByFaculty_Id(faculty_id));
     }
 }

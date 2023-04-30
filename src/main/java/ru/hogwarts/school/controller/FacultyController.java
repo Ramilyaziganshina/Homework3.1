@@ -49,14 +49,6 @@ public class FacultyController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Faculty>> findFaculties(@RequestParam(required = false) String color) {
-        if (color != null && !color.isBlank()) {
-            return ResponseEntity.ok(facultyService.findByColor(color));
-        }
-        return ResponseEntity.ok(facultyService.getAll());
-    }
-
-    @GetMapping
     public ResponseEntity<Collection<Faculty>> findFacultiesByColorOrName(@RequestParam(required = false) String color, @RequestParam(required = false) String name) {
         if (color != null && !color.isBlank()) {
             return ResponseEntity.ok(facultyService.findByColorIgnoreCase(color));
@@ -66,4 +58,9 @@ public class FacultyController {
         }
         return ResponseEntity.ok(facultyService.getAll());
     }
+
+//    @GetMapping
+//    public Faculty findFacultyByName(@RequestParam String name) {
+//        return facultyService.findFacultyByName(name);
+//    }
 }
